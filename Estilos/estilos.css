@@ -17,13 +17,19 @@
 html{
     width: 100%;
     height: 100%;
+<<<<<<< HEAD
     font-family: 'VAGrounded';
+=======
+>>>>>>> c669f2580da31255536217b2d0a7e3e99b1ff7b3
 }
 body{
     width: 100%;
     margin: 0%;
+<<<<<<< HEAD
     background-color: #b9d3ef;
     font-family: 'VAGrounded';
+=======
+>>>>>>> c669f2580da31255536217b2d0a7e3e99b1ff7b3
 }
 
 #menu{
@@ -161,11 +167,18 @@ body{
 }
 
 .user-avatar img {
+<<<<<<< HEAD
     width: 80%;
     height: 80%;
     border:3px solid rgb(136, 6, 125);
     border-radius: 50%;
     margin: 3px;
+=======
+    width: 90%;
+    height: 90%;
+    border:3px solid rgb(136, 6, 125);
+    border-radius: 50%;
+>>>>>>> c669f2580da31255536217b2d0a7e3e99b1ff7b3
 }
 
 .user-name{
