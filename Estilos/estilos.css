@@ -17,10 +17,13 @@
 html{
     width: 100%;
     height: 100%;
+    font-family: 'VAGrounded';
 }
 body{
     width: 100%;
     margin: 0%;
+    background-color: #b9d3ef;
+    font-family: 'VAGrounded';
 }
 
 #menu{
@@ -158,10 +161,11 @@ body{
 }
 
 .user-avatar img {
-    width: 90%;
-    height: 90%;
+    width: 80%;
+    height: 80%;
     border:3px solid rgb(136, 6, 125);
     border-radius: 50%;
+    margin: 3px;
 }
 
 .user-name{
