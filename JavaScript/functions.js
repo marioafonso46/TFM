@@ -1,5 +1,6 @@
 function doLike(foto_id, id_user, likes) {
-    $.post("prueba-likes.php", {foto_id: 1, id_user: "hollywoodrose94@hotmail.com", likes: 4}, function( data ) {
+    $.post("likes.php", {foto_id: foto_id, id_user: id_user, likes: likes}, function( data ) {
         console.log(data);
     });
+    $("#likes-number").html(likes+1);
 }

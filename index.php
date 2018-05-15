@@ -70,8 +70,7 @@
                     <img src='".$foto->url."' alt='Post'>
                 </div>
                 <div class='post-stats'>
-                    <div class='post-likes'><input onClick='doLike(".$foto->id.", '".$_SESSION['user']->email."', ".$foto->likes.");' type='image' src='Imagenes/not-like-negro.png' /><p class='likes-number' id='likes-number'>".$foto->likes."</p></div>
-                    <div><form action='prueba-likes.php' method='POST'><input type='text' name='foto_id' id='foto_id' value='".$foto->id."'><input type='text' name='email' id='email' value='".$_SESSION['user']->email."'><input type='text' name='likes' id='likes' value=".$foto->likes."><input type='submit' value='like' /></form></div>
+                    <div class='post-likes'><input onClick=\"doLike(".$foto->id.", '".$_SESSION['user']->email."', ".$foto->likes.");\" type='image' src='Imagenes/not-like-negro.png' /><p class='likes-number' id='likes-number'>".$foto->likes."</p></div>
                     <div class='post-comments'>
                         <p class='mensaje'><b><a href='www.google.com'>".$user->username."</a></b>".$comentario."</p>
                         <textarea class='caja-comentario' name='comentarios' rows='5' cols='20'></textarea>
@@ -81,7 +80,6 @@
                 </div>";
             }
             ?>
-            <button onclick="doLike(1, 'hollywoodrose94@hotmail.com', 4)">Click me</button>
         </div>
     </div>
 </body>

@@ -6,7 +6,7 @@ function getGlobalTimeLine($conexion)
 {
     $consulta = "SELECT * FROM foto LIMIT 10";
 
-    $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+    $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos3");
 
     $array_foto = array();
 
@@ -32,7 +32,7 @@ function getComments($conexion, $id_foto)
 {
     $consulta = "SELECT * FROM comentarios WHERE id_imagen=".$id_foto;
 
-    $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
+    $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos4");
 
     $array_comentarios = array();
 
