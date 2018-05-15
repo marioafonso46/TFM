@@ -1,22 +1,22 @@
 <?php
-include("conexion.php");
+include("dbConn.php");
+include("user.php");
 
-$consulta = "SELECT * FROM user";
-
-$resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos");
-
-echo "<table borde='2'>";
-echo "<tr>";
-echo "<th>Nombre</th>";
-echo "<th>email</th>";
-echo "</tr>";
-
-while ($columna = mysqli_fetch_array( $resultado ))
+if($_POST)
 {
-	echo "<tr>";
-	echo "<td>" . $columna['nombre'] . "</td><td>" . $columna['email'] . "</td>";
-	echo "</tr>";
-}
+    $user = get_user($_POST["usuario"], $conexion);
 
-echo "</table>";
+    if(password_verify($_POST["password"], $user->password))
+    {
+        session_start();
+
+        $_SESSION['user'] = $user;
+
+        echo "<a href='index.php'>volver</a>";
+
+    }else
+    {
+        echo "Fallo en la consulta";
+    }
+}
 ?>
