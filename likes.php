@@ -2,6 +2,8 @@
 
 include("dbConn.php");
 include("foto.php");
+include("user.php");
+session_start();
 
     $consulta = "SELECT * FROM foto WHERE id=".$_POST["foto_id"];
 
@@ -22,9 +24,17 @@ include("foto.php");
     //Relacion de likes en la tabla like
 
     $consulta = "INSERT INTO likes (id_imagen, email) VALUES (".$_POST["foto_id"].", '".$_POST["id_user"]."')";
-
     $resultado = mysqli_query( $conexion, $consulta ) or die ( "Algo ha ido mal en la consulta a la base de datos2");
+    //Actualizamos el usuario que da like
 
+    $_SESSION["user"]->likes_send = $_SESSION["user"]->likes_send + 1;
+    $_SESSION["user"]->commit_usuario($conexion);
+
+    //Actualizamos el usuario que recive like
+
+    $user_reciver = get_user($foto->email, $conexion);
+    $user_reciver->likes_recived = $user_reciver->likes_recived + 1;
+    $user_reciver->commit_usuario($conexion);
     // 200 == todo ha ido bien
     return 200;
 

@@ -98,6 +98,11 @@ body{
     text-align: right;
 }
 
+#login-form a{
+    font-size: 12px;
+    font-weight: bold;
+}
+
 #content{
     width: 100%;
     height: 100%;
@@ -234,4 +239,45 @@ body{
 .boton-enviar-comentario{
     width: 35px;
     height: 35px;
+}
+
+#user-info{
+    background-color: #FFF;
+    display: flex;
+    flex-wrap: wrap;
+}
+#avatar{
+    width: 250px;
+    height: 250px;
+    display: flex;
+}
+
+#avatar img{
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 50%;
+}
+#stats{
+    width:650px;
+    height: 250px;
+}
+
+#stats table{
+    width: 100%;
+    text-align: left;
+    font-size: 25px;
+    padding: 5px;
+}
+
+#galeria{
+    width: 100%;
+}
+
+#galeria img{
+    padding: 1px;
+    margin: 1px;
+    height: 250px;
+    width: 32%;
+    border: solid;
 }

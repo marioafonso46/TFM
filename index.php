@@ -30,7 +30,7 @@
             {
                 echo "";
                 echo "<form id='login-form' action='logOut.php'>
-                        <label>Bienvenido ".$_SESSION["user"]->nombre."</label>
+                        <a href='perfil.php'>Bienvenido ".$_SESSION["user"]->nombre."</a>
                         <input type='submit' value='Salir' />
                     </form>";
             }else
@@ -52,32 +52,70 @@
 
             include("timelineFunctions.php");
 
-            $array_fotos = getGlobalTimeLine($conexion);
-
-            foreach($array_fotos as $foto)
+            if (isset($_SESSION["user"]))
             {
-                $user = get_user($foto->email, $conexion);
-                $comentario = getComments($conexion, $foto->id)[0];
-                echo "<div class='post'>
-                <div class='post-cabecera'>
-                    <div class='user-avatar'>
-                        <img src='".$user->imagen."' alt='Avatar'>
+                $array_fotos = getUserTimeLine($conexion, $_SESSION["user"]);
+
+                $i = 0;
+
+                foreach($array_fotos as $foto)
+                {
+                    $user = get_user($foto->email, $conexion);
+                    $comentario = getComments($conexion, $foto->id)[0];
+                    echo "<div class='post'>
+                    <div class='post-cabecera'>
+                        <div class='user-avatar'>
+                            <img src='".$user->imagen."' alt='Avatar'>
+                        </div>
+                        <div class='user-name'>".$user->nombre."</div>
+                        <div class='user-level'>".$user->nivel."</div>
                     </div>
-                    <div class='user-name'>".$user->nombre."</div>
-                    <div class='user-level'>".$user->nivel."</div>
-                </div>
-                <div class='post-contenido'>
-                    <img src='".$foto->url."' alt='Post'>
-                </div>
-                <div class='post-stats'>
-                    <div class='post-likes'><input onClick=\"doLike(".$foto->id.", '".$_SESSION['user']->email."', ".$foto->likes.");\" type='image' src='Imagenes/not-like-negro.png' /><p class='likes-number' id='likes-number'>".$foto->likes."</p></div>
-                    <div class='post-comments'>
-                        <p class='mensaje'><b><a href='www.google.com'>".$user->username."</a></b>".$comentario."</p>
-                        <textarea class='caja-comentario' name='comentarios' rows='5' cols='20'></textarea>
-                        <input class='boton-enviar-comentario' type='image' src='Imagenes/send-button.png' />
+                    <div class='post-contenido'>
+                        <img src='".$foto->url."' alt='Post'>
                     </div>
-                </div>
-                </div>";
+                    <div class='post-stats'>
+                    <div class='post-likes'><input onClick=\"doLike(".$foto->id.", '".$_SESSION['user']->email."', ".$foto->likes.", ".$i.");\" type='image' src='Imagenes/not-like-negro.png' />
+                    <p class='likes-number' id='likes-number".$i."'>".$foto->likes."</p></div>
+                        <div class='post-comments'>
+                            <p class='mensaje'><b><a href='www.google.com'>".$user->username."</a></b>".$comentario."</p>
+                            <textarea class='caja-comentario' name='comentarios' rows='5' cols='20'></textarea>
+                            <input class='boton-enviar-comentario' type='image' src='Imagenes/send-button.png' />
+                        </div>
+                    </div>
+                    </div>";
+
+                    $i = $i+1;
+                }
+            }
+            else{
+                $array_fotos = getGlobalTimeLine($conexion);
+
+                foreach($array_fotos as $foto)
+                {
+                    $user = get_user($foto->email, $conexion);
+                    $comentario = getComments($conexion, $foto->id)[0];
+                    echo "<div class='post'>
+                    <div class='post-cabecera'>
+                        <div class='user-avatar'>
+                            <img src='".$user->imagen."' alt='Avatar'>
+                        </div>
+                        <div class='user-name'>".$user->nombre."</div>
+                        <div class='user-level'>".$user->nivel."</div>
+                    </div>
+                    <div class='post-contenido'>
+                        <img src='".$foto->url."' alt='Post'>
+                    </div>
+                    <div class='post-stats'>
+                    <div class='post-likes'><input type='image' src='Imagenes/not-like-negro.png' />
+                    <p class='likes-number' id='likes-number'>".$foto->likes."</p></div>
+                        <div class='post-comments'>
+                            <p class='mensaje'><b><a href='www.google.com'>".$user->username."</a></b>".$comentario."</p>
+                            <textarea class='caja-comentario' name='comentarios' rows='5' cols='20'></textarea>
+                            <input class='boton-enviar-comentario' type='image' src='Imagenes/send-button.png' />
+                        </div>
+                    </div>
+                    </div>";
+                }
             }
             ?>
         </div>
