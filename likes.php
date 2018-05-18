@@ -28,12 +28,14 @@ session_start();
     //Actualizamos el usuario que da like
 
     $_SESSION["user"]->likes_send = $_SESSION["user"]->likes_send + 1;
+    $_SESSION["user"]->experiencia = $_SESSION["user"]->experiencia + 10;
     $_SESSION["user"]->commit_usuario($conexion);
 
     //Actualizamos el usuario que recive like
 
     $user_reciver = get_user($foto->email, $conexion);
     $user_reciver->likes_recived = $user_reciver->likes_recived + 1;
+    $user_reciver->experiencia = $user_reciver->experiencia + 100;
     $user_reciver->commit_usuario($conexion);
     // 200 == todo ha ido bien
     return 200;
