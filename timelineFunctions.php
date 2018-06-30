@@ -77,6 +77,8 @@ function getUserTimeLine($conexion, $user)
         $foto->url = $columna["url"];
         $foto->likes = $columna["likes"];
         $foto->comentarios = $columna["comentarios"];
+        $foto->binario = $columna["binario"];
+        $foto->tipo = $columna["tipo"];
 
         $array_foto[$i] = $foto;
         $i = $i+1;

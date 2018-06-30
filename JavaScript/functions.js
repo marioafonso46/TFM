@@ -4,3 +4,14 @@ function doLike(foto_id, id_user, likes, num) {
     });
     $("#likes-number".concat(num)).html(likes+1);
 }
+
+function sendComment(foto_id, email)
+{
+comment = document.getElementById('comentario');
+
+$.post("enviarComentario.php", {foto_id: foto_id, email: email, comentario: comment.value}, function( data ) {
+    console.log(data);
+});
+
+
+}

@@ -8,6 +8,8 @@ class foto
     public $url = "";
     public $likes = 0;
     public $comentarios = 0;
+    public $binario = "";
+    public $tipo = "";
     
     public function add_like($conexion) 
     {

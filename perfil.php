@@ -13,39 +13,7 @@
 </head>
  
 <body>
-    <div id="menu">
-        <nav>
-            <ul>
-                <li><a title="Inicio" href="#"><img src="Imagenes/Logo-web.png" alt="Logo web"></a></li>
-                <li><a title="Contacto" href="#">Contacto</a></li>
-                <li><a title="Sobre nosotros" href="#">Sobre nosotros</a></li>
-                <li><a title="Niveles" href="#">Niveles</a></li>
-                <li><a title="Trabajo" href="#">Trabajo</a></li>
-            </ul>
-            <?php
-            include("user.php");
-            session_start();
-
-            if (isset($_SESSION["user"]))
-            {
-                echo "";
-                echo "<form id='login-form' action='logOut.php'>
-                        <label>Bienvenido ".$_SESSION["user"]->nombre."</label>
-                        <input type='submit' value='Salir' />
-                    </form>";
-            }else
-            {
-                echo "<form id='login-form' action='loginFunctions.php' method='POST'>
-                <label>Usuario</label>
-                <input type='text' name='usuario' id='usuario'>
-                <label>Contraseña</label>
-                <input type='password' name='password' id='password'>
-                <input type='submit' value='Entrar'>
-                </form>";
-            }
-            ?>
-        </nav>
-    </div>
+    <?php include("menu.php") ?>
     <div id="content">
         <div id="time-line">
             <div id="user-info">

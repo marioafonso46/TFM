@@ -13,39 +13,7 @@
 </head>
  
 <body>
-    <div id="menu">
-        <nav>
-            <ul>
-                <li><a title="Inicio" href="#"><img src="Imagenes/Logo-web.png" alt="Logo web"></a></li>
-                <li><a title="Contacto" href="#">Contacto</a></li>
-                <li><a title="Sobre nosotros" href="#">Sobre nosotros</a></li>
-                <li><a title="Niveles" href="#">Niveles</a></li>
-                <li><a title="Trabajo" href="#">Trabajo</a></li>
-            </ul>
-            <?php
-            include("user.php");
-            session_start();
-
-            if (isset($_SESSION["user"]))
-            {
-                echo "";
-                echo "<form id='login-form' action='logOut.php'>
-                        <a href='perfil.php'>Bienvenido ".$_SESSION["user"]->nombre."</a>
-                        <input type='submit' value='Salir' />
-                    </form>";
-            }else
-            {
-                echo "<form id='login-form' action='loginFunctions.php' method='POST'>
-                <label>Usuario</label>
-                <input type='text' name='usuario' id='usuario'>
-                <label>Contraseña</label>
-                <input type='password' name='password' id='password'>
-                <input type='submit' value='Entrar'>
-                </form>";
-            }
-            ?>
-        </nav>
-    </div>
+    <?php include("menu.php") ?>
     <div id="content">
         <div id="time-line">
             <?php
@@ -61,7 +29,7 @@
                 foreach($array_fotos as $foto)
                 {
                     $user = get_user($foto->email, $conexion);
-                    $comentario = getComments($conexion, $foto->id)[0];
+                    $comentario = getComments($conexion, $foto->id);
                     echo "<div class='post'>
                     <div class='post-cabecera'>
                         <div class='user-avatar'>
@@ -71,15 +39,15 @@
                         <div class='user-level'>".$user->nivel."</div>
                     </div>
                     <div class='post-contenido'>
-                        <img src='".$foto->url."' alt='Post'>
+                        <img src='http://localhost/showImages.php?id=".$foto->id."&tipo=".$foto->tipo."' alt='Post'>
                     </div>
                     <div class='post-stats'>
                     <div class='post-likes'><input onClick=\"doLike(".$foto->id.", '".$_SESSION['user']->email."', ".$foto->likes.", ".$i.");\" type='image' src='Imagenes/not-like-negro.png' />
                     <p class='likes-number' id='likes-number".$i."'>".$foto->likes."</p></div>
                         <div class='post-comments'>
-                            <p class='mensaje'><b><a href='www.google.com'>".$user->username."</a></b>".$comentario."</p>
-                            <textarea class='caja-comentario' name='comentarios' rows='5' cols='20'></textarea>
-                            <input class='boton-enviar-comentario' type='image' src='Imagenes/send-button.png' />
+                            <p class='mensaje'><b><a href='www.google.com'>".$user->username."</a></b>".$comentario[0]."</p>
+                            <textarea class='caja-comentario' id='comentario' name='comentarios' rows='5' cols='20'></textarea>
+                            <input class='boton-enviar-comentario' onClick=\"sendComment(".$foto->id.", '".$_SESSION['user']->email."');\" type='image' src='Imagenes/send-button.png' />
                         </div>
                     </div>
                     </div>";
