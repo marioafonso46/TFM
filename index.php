@@ -35,7 +35,7 @@
                         <div class='user-avatar'>
                             <img src='".$user->imagen."' alt='Avatar'>
                         </div>
-                        <div class='user-name'>".$user->nombre."</div>
+                        <div class='user-name'><a href='http://localhost/perfil.php?email=".$user->email."'>".$user->nombre."</a></div>
                         <div class='user-level'>".$user->nivel."</div>
                     </div>
                     <div class='post-contenido'>

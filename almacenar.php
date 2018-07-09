@@ -8,6 +8,7 @@ $tmp_name = $_FILES['imagen']['tmp_name'];
 $type = $_FILES['imagen']['type'];
 $size = $_FILES['imagen']['size'];
 $max_size = 1074752;
+session_start();
 
 if(isset($name)){
 
@@ -29,7 +30,7 @@ if(isset($name)){
 			$content= mysqli_real_escape_string($conexion, $content);
 			$name= mysqli_real_escape_string($conexion, $name);
 			// Insert into the table "table" for column "image" with our binary string of data ("content")
-			mysqli_query($conexion,"INSERT INTO foto (email, url, likes, comentarios, binario, tipo) Values('hollywoodrose94@hotmail.com','null', 0, 0, '$content','$type')") or 
+			mysqli_query($conexion,"INSERT INTO foto (email, url, likes, comentarios, binario, tipo) Values('".$_SESSION["user"]->email."','null', 0, 0, '$content','$type')") or 
 			die("Couldn't execute query in your database!".mysqli_error($conexion));
 			
 			echo 'Data-File was inserted into the database!|';
